@@ -2,7 +2,7 @@ import requests
 from cache import JSONCache
 from creds import OPEN_AI_KEY, DISC_URL
 
-FF_WEEK_END = 4
+FF_WEEK_END = 0
 
 
 def main():
@@ -12,6 +12,12 @@ def main():
     chrungID = "930716840920227840"
 
     leagueId = lvflId
+
+    updateStartWeek()
+
+    if(FF_WEEK_END == 0):
+        print("Week not set. Exiting...")
+        return
 
     # players = loadPlayerData()
     info = loadLeagueInfo(leagueId)
@@ -240,6 +246,19 @@ def loadDraftData(leagueId) -> dict:
         draft = cached_data
 
     return draft
+
+
+def updateStartWeek() -> None:
+    response = requests.get(f"https://api.sleeper.app/v1/state/nfl")
+
+    try: 
+        json = response.json()
+    except Exception:
+        print("Sleeper API Error. Exiting...")
+        return
+
+    global FF_WEEK_END
+    FF_WEEK_END = json['week']
 
 
 if __name__ == "__main__":
