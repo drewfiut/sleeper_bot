@@ -1,0 +1,9 @@
+creds.py
+
+__pycache__
+
+cache/*
+
+!cache/.gitkeep
+
+.DS_Store
