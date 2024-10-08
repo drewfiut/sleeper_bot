@@ -258,7 +258,7 @@ def updateStartWeek() -> None:
         return
 
     global FF_WEEK_END
-    FF_WEEK_END = json['week']
+    FF_WEEK_END = json['week'] - 1
 
 
 if __name__ == "__main__":
