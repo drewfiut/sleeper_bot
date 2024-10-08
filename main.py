@@ -155,7 +155,7 @@ def getAiReponse(prompt) -> str:
     )
 
     message = response.choices[0].message.content
-    return message
+    return message.replace("####", "###")
 
 
 def postToDiscord(msg):
